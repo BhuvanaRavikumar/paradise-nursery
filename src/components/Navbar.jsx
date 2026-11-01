@@ -19,7 +19,7 @@ export default function Navbar({ transparent = false }) {
         <NavLink to="/" end onClick={close}>Home</NavLink>
         <NavLink to="/plants" onClick={close}>Plants</NavLink>
         <NavLink to="/about" onClick={close}>Our Story</NavLink>
-        <NavLink to="/cart" className="cart-nav" onClick={close} aria-label={`Cart with ${count} items`}><Icon name="bag" size={21}/><span>Cart</span>{count > 0 && <span className="cart-count">{count}</span>}</NavLink>
+        <NavLink to="/cart" className="cart-nav" onClick={close} aria-label={`Cart with ${count} items`}><Icon name="bag" size={21}/><span>Cart</span><span className="cart-count">{count}</span></NavLink>
       </nav>
     </div>
   </header>;

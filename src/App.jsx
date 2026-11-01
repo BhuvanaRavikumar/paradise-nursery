@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import AboutUs from './components/AboutUs';
 import ProductList from './components/ProductList';
@@ -18,5 +18,6 @@ function LandingPage() {
 function Footer() { return <footer className="site-footer"><div className="container footer-inner"><div className="footer-brand"><Icon name="leaf" size={22}/><span>paradise nursery</span></div><p>Grow something good. © {new Date().getFullYear()} Paradise Nursery.</p><div><Link to="/">Home</Link><Link to="/plants">Plants</Link><Link to="/about">About</Link></div></div></footer>; }
 
 export default function App() {
-  return <><Navbar/><Routes><Route path="/" element={<LandingPage/>}/><Route path="/plants" element={<ProductList/>}/><Route path="/cart" element={<CartItem/>}/><Route path="/about" element={<AboutUs/>}/><Route path="*" element={<div className="not-found container"><h1>Page not found</h1><p>Looks like this path has gone a little wild.</p><Link className="btn btn-primary" to="/">Back home</Link></div>}/></Routes><Footer/></>;
+  const { pathname } = useLocation();
+  return <>{!['/plants', '/cart'].includes(pathname) && <Navbar/>}<Routes><Route path="/" element={<LandingPage/>}/><Route path="/plants" element={<ProductList/>}/><Route path="/cart" element={<CartItem/>}/><Route path="/about" element={<AboutUs/>}/><Route path="*" element={<div className="not-found container"><h1>Page not found</h1><p>Looks like this path has gone a little wild.</p><Link className="btn btn-primary" to="/">Back home</Link></div>}/></Routes><Footer/></>;
 }
